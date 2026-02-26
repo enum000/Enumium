@@ -1,0 +1,148 @@
+<UserControl x:Class="Enumium.Views.StartupView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:helpers="clr-namespace:Enumium.Helpers">
+
+    <UserControl.Resources>
+        <helpers:ImpactToColorConverter x:Key="ImpactConv"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Grid.Row="0" Margin="28,24,28,0">
+            <StackPanel>
+                <TextBlock Text="Startup Manager" Style="{StaticResource PageTitleStyle}"/>
+                <TextBlock Text="Control what runs when Windows starts" Style="{StaticResource BodyTextStyle}" Margin="0,4,0,0"/>
+            </StackPanel>
+            <Button Content="🔄 Refresh" Style="{StaticResource SecondaryButtonStyle}"
+                    Command="{Binding RefreshCommand}" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <!-- Tabs -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="28,16,28,0">
+            <RadioButton Style="{StaticResource TabButtonStyle}" Content="🚀 Startup Programs" IsChecked="True"
+                         GroupName="StartupTabs" Command="{Binding SelectTabCommand}" CommandParameter="Startup"/>
+            <RadioButton Style="{StaticResource TabButtonStyle}" Content="⚙️ Windows Services" Margin="4,0"
+                         GroupName="StartupTabs" Command="{Binding SelectTabCommand}" CommandParameter="Services"/>
+        </StackPanel>
+
+        <!-- Content -->
+        <ScrollViewer Grid.Row="2" Margin="28,16,28,0" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- Startup Items (Tab 0) -->
+                <ItemsControl ItemsSource="{Binding StartupItems}">
+                    <ItemsControl.Style>
+                        <Style TargetType="ItemsControl">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedTab}" Value="1">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ItemsControl.Style>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource CardStyle}" Margin="0,0,0,8" Padding="16">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Name}" FontSize="14" FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+                                        <TextBlock Text="{Binding Command}" Style="{StaticResource SmallTextStyle}"
+                                                   TextTrimming="CharacterEllipsis" MaxWidth="400"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                            <Border Background="{Binding Impact, Converter={StaticResource ImpactConv}}"
+                                                    CornerRadius="3" Padding="6,1" Opacity="0.3" Margin="0,0,8,0">
+                                                <TextBlock Text="{Binding Impact}" FontSize="10"
+                                                           Foreground="{Binding Impact, Converter={StaticResource ImpactConv}}"/>
+                                            </Border>
+                                            <TextBlock Text="{Binding Location}" FontSize="10"
+                                                       Foreground="{StaticResource TextSecondaryBrush}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <!-- Open file location -->
+                                    <Button Grid.Column="2" Content="📂" Style="{StaticResource SecondaryButtonStyle}"
+                                            Height="30" MinWidth="36" Padding="8,0" Margin="0,0,8,0"
+                                            ToolTip="Open file location"
+                                            Command="{Binding DataContext.OpenFileLocationCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding FilePath}"/>
+
+                                    <!-- Toggle -->
+                                    <CheckBox Grid.Column="3" Style="{StaticResource ToggleSwitchStyle}"
+                                              IsChecked="{Binding IsEnabled}" VerticalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!-- Services (Tab 1) -->
+                <ItemsControl ItemsSource="{Binding Services}">
+                    <ItemsControl.Style>
+                        <Style TargetType="ItemsControl">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedTab}" Value="1">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ItemsControl.Style>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource CardStyle}" Margin="0,0,0,4" Padding="12">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding DisplayName}" FontSize="13" FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding Name}" Style="{StaticResource SmallTextStyle}"/>
+                                    </StackPanel>
+
+                                    <TextBlock Grid.Column="1" Text="{Binding Status}" FontSize="12"
+                                               Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding StartupType}" FontSize="12"
+                                               Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center"/>
+
+                                    <Border Grid.Column="3" Visibility="{Binding SafeToDisable, Converter={StaticResource BoolToVisibilityConverter}}"
+                                            Background="#2200B894" CornerRadius="4" Padding="6,2" VerticalAlignment="Center">
+                                        <Border.Resources>
+                                            <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+                                        </Border.Resources>
+                                        <TextBlock Text="Safe" FontSize="10" Foreground="{StaticResource SuccessBrush}"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="3" Background="{StaticResource SurfaceBrush}" Padding="28,10"
+                BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,1,0,0">
+            <TextBlock Text="{Binding StatusText}" Style="{StaticResource BodyTextStyle}"/>
+        </Border>
+    </Grid>
+</UserControl>

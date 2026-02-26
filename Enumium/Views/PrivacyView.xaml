@@ -1,0 +1,90 @@
+<UserControl x:Class="Enumium.Views.PrivacyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:helpers="clr-namespace:Enumium.Helpers">
+
+    <UserControl.Resources>
+        <helpers:PercentToColorConverter x:Key="PctColorConv"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header + Score -->
+        <Grid Grid.Row="0" Margin="28,24,28,0">
+            <StackPanel>
+                <TextBlock Text="Privacy Guard" Style="{StaticResource PageTitleStyle}"/>
+                <TextBlock Text="Control Windows telemetry and protect your privacy"
+                           Style="{StaticResource BodyTextStyle}" Margin="0,4,0,0"/>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <!-- Privacy Score -->
+                <StackPanel Margin="0,0,20,0" VerticalAlignment="Center">
+                    <TextBlock Text="Privacy Score" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"
+                               Foreground="{Binding PrivacyScore, Converter={StaticResource PctColorConv}}">
+                        <TextBlock.Text>
+                            <Binding Path="PrivacyScore" StringFormat="{}{0:F0}%"/>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+
+                <Button Content="🛡️ Max Privacy" Style="{StaticResource PrimaryButtonStyle}"
+                        Command="{Binding MaxPrivacyCommand}" Margin="0,0,8,0"/>
+                <Button Content="↩️ Restore Defaults" Style="{StaticResource SecondaryButtonStyle}"
+                        Command="{Binding RestoreDefaultsCommand}"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Privacy Items -->
+        <ScrollViewer Grid.Row="1" Margin="28,16,28,0" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding PrivacyItems}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardStyle}" Margin="0,0,0,8" Padding="16">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}" FontSize="14" FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+                                        <Border Background="{StaticResource SurfaceLightBrush}" CornerRadius="4"
+                                                Padding="8,2" Margin="10,0,0,0" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Category}" FontSize="10"
+                                                       Foreground="{StaticResource TextSecondaryBrush}"/>
+                                        </Border>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding Description}" Style="{StaticResource BodyTextStyle}"
+                                               TextWrapping="Wrap" MaxWidth="550" Margin="0,4,0,0"/>
+                                </StackPanel>
+
+                                <CheckBox Grid.Column="1" Style="{StaticResource ToggleSwitchStyle}"
+                                          IsChecked="{Binding IsEnabled}" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <!-- Apply Bar -->
+        <Border Grid.Row="2" Background="{StaticResource SurfaceBrush}" Padding="28,12"
+                BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,1,0,0">
+            <Grid>
+                <TextBlock Text="{Binding StatusText}" Style="{StaticResource BodyTextStyle}" VerticalAlignment="Center"/>
+                <Button Content="Apply Changes" Style="{StaticResource PrimaryButtonStyle}"
+                        HorizontalAlignment="Right" Command="{Binding ApplyCommand}"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

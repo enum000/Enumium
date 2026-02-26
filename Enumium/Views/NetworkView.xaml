@@ -1,0 +1,159 @@
+<UserControl x:Class="Enumium.Views.NetworkView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:helpers="clr-namespace:Enumium.Helpers">
+
+    <UserControl.Resources>
+        <helpers:BoolToVisibilityConverter x:Key="BoolVis"/>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="28,24">
+        <StackPanel>
+            <!-- Header -->
+            <TextBlock Text="Network Booster" Style="{StaticResource PageTitleStyle}"/>
+            <TextBlock Text="Optimize your network connection and diagnose issues"
+                       Style="{StaticResource BodyTextStyle}" Margin="0,4,0,20"/>
+
+            <!-- Ping Test Card -->
+            <Border Style="{StaticResource CardStyle}" Margin="0,0,0,16">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Google DNS (8.8.8.8)" Style="{StaticResource SmallTextStyle}"/>
+                        <TextBlock Text="{Binding GooglePing}" FontSize="24" FontWeight="Bold"
+                                   Foreground="{StaticResource SecondaryAccentBrush}"
+                                   FontFamily="{StaticResource MonoFont}"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Cloudflare DNS (1.1.1.1)" Style="{StaticResource SmallTextStyle}"/>
+                        <TextBlock Text="{Binding CloudflarePing}" FontSize="24" FontWeight="Bold"
+                                   Foreground="{StaticResource PrimaryAccentBrush}"
+                                   FontFamily="{StaticResource MonoFont}"/>
+                    </StackPanel>
+
+                    <Button Grid.Column="2" Content="🏓 Ping Test" Style="{StaticResource PrimaryButtonStyle}"
+                            Command="{Binding PingTestCommand}" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+
+            <!-- Quick Fix Actions -->
+            <TextBlock Text="One-Click Fixes" Style="{StaticResource SectionTitleStyle}" Margin="0,0,0,12"/>
+            <UniformGrid Columns="4" Margin="0,0,0,20">
+                <Border Style="{StaticResource CardStyle}" Margin="0,0,8,0" Cursor="Hand"
+                        MouseLeftButtonDown="FlushDns_Click">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="🔄" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,6"/>
+                        <TextBlock Text="Flush DNS" FontSize="12" FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource CardStyle}" Margin="4,0,4,0" Cursor="Hand"
+                        MouseLeftButtonDown="ResetWinsock_Click">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="🔧" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,6"/>
+                        <TextBlock Text="Reset Winsock" FontSize="12" FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource CardStyle}" Margin="4,0,4,0" Cursor="Hand"
+                        MouseLeftButtonDown="RenewIp_Click">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="🌐" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,6"/>
+                        <TextBlock Text="Renew IP" FontSize="12" FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource CardStyle}" Margin="8,0,0,0" Cursor="Hand"
+                        MouseLeftButtonDown="ResetStack_Click">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="⚡" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,6"/>
+                        <TextBlock Text="Full Reset" FontSize="12" FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </UniformGrid>
+
+            <!-- DNS Presets -->
+            <TextBlock Text="DNS Switcher" Style="{StaticResource SectionTitleStyle}" Margin="0,0,0,12"/>
+            <ItemsControl ItemsSource="{Binding DnsPresets}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardStyle}" Margin="0,0,8,8" Padding="14" Cursor="Hand"
+                                Width="200" MouseLeftButtonDown="DnsPreset_Click">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" FontSize="13" FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextPrimaryBrush}"/>
+                                <TextBlock FontSize="11" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,4,0,0"
+                                           FontFamily="{StaticResource MonoFont}">
+                                    <Run Text="{Binding Primary}"/> / <Run Text="{Binding Secondary}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- TCP Optimization -->
+            <Grid Margin="0,12,0,20">
+                <TextBlock Text="TCP/IP Optimization" Style="{StaticResource SectionTitleStyle}" VerticalAlignment="Center"/>
+                <Button Content="⚡ Apply TCP Optimizations" Style="{StaticResource PrimaryButtonStyle}"
+                        HorizontalAlignment="Right" Command="{Binding ApplyTcpOptCommand}"/>
+            </Grid>
+
+            <!-- Network Adapters -->
+            <TextBlock Text="Network Adapters" Style="{StaticResource SectionTitleStyle}" Margin="0,0,0,12"/>
+            <ItemsControl ItemsSource="{Binding Adapters}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardStyle}" Margin="0,0,0,8" Padding="16">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Description}" FontSize="14" FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextPrimaryBrush}" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Style="{StaticResource SmallTextStyle}" Margin="0,4,0,0">
+                                        <Run Text="Status: "/><Run Text="{Binding Status}" Foreground="{StaticResource SuccessBrush}"/>
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource SmallTextStyle}">
+                                        <Run Text="Type: "/><Run Text="{Binding Type}"/>
+                                    </TextBlock>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Style="{StaticResource SmallTextStyle}">
+                                        <Run Text="IP: "/><Run Text="{Binding IpAddress}" Foreground="{StaticResource SecondaryAccentBrush}"/>
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource SmallTextStyle}" Margin="0,2,0,0">
+                                        <Run Text="Gateway: "/><Run Text="{Binding Gateway}"/>
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource SmallTextStyle}" Margin="0,2,0,0">
+                                        <Run Text="DNS: "/><Run Text="{Binding DnsServers}"/>
+                                    </TextBlock>
+                                    <TextBlock Style="{StaticResource SmallTextStyle}" Margin="0,2,0,0">
+                                        <Run Text="MAC: "/><Run Text="{Binding MacAddress}" FontFamily="{StaticResource MonoFont}"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- Status -->
+            <TextBlock Text="{Binding StatusText}" Style="{StaticResource BodyTextStyle}" Margin="0,12,0,20"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
