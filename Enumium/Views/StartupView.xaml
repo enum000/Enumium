@@ -21,15 +21,15 @@
                 <TextBlock Text="Startup Manager" Style="{StaticResource PageTitleStyle}"/>
                 <TextBlock Text="Control what runs when Windows starts" Style="{StaticResource BodyTextStyle}" Margin="0,4,0,0"/>
             </StackPanel>
-            <Button Content="🔄 Refresh" Style="{StaticResource SecondaryButtonStyle}"
+            <Button Content="Refresh" Style="{StaticResource SecondaryButtonStyle}"
                     Command="{Binding RefreshCommand}" HorizontalAlignment="Right"/>
         </Grid>
 
         <!-- Tabs -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="28,16,28,0">
-            <RadioButton Style="{StaticResource TabButtonStyle}" Content="🚀 Startup Programs" IsChecked="True"
+            <RadioButton Style="{StaticResource TabButtonStyle}" Content="Startup Programs" IsChecked="True"
                          GroupName="StartupTabs" Command="{Binding SelectTabCommand}" CommandParameter="Startup"/>
-            <RadioButton Style="{StaticResource TabButtonStyle}" Content="⚙️ Windows Services" Margin="4,0"
+            <RadioButton Style="{StaticResource TabButtonStyle}" Content="Windows Services" Margin="4,0"
                          GroupName="StartupTabs" Command="{Binding SelectTabCommand}" CommandParameter="Services"/>
         </StackPanel>
 
@@ -75,7 +75,7 @@
                                     </StackPanel>
 
                                     <!-- Open file location -->
-                                    <Button Grid.Column="2" Content="📂" Style="{StaticResource SecondaryButtonStyle}"
+                                    <Button Grid.Column="2" Content="Open" Style="{StaticResource SecondaryButtonStyle}"
                                             Height="30" MinWidth="36" Padding="8,0" Margin="0,0,8,0"
                                             ToolTip="Open file location"
                                             Command="{Binding DataContext.OpenFileLocationCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"

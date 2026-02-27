@@ -172,7 +172,16 @@
                             </Style>
                         </Border.Style>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock Text="🇬🇧" FontSize="24" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                            <Border Width="36" Height="26" CornerRadius="4" Margin="0,0,10,0" VerticalAlignment="Center">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#FF6C5CE7" Offset="0"/>
+                                        <GradientStop Color="#FF00CEC9" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <TextBlock Text="EN" FontSize="12" FontWeight="Bold" Foreground="White"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI"/>
+                            </Border>
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Text="English" FontSize="15" FontWeight="SemiBold" Foreground="#EEEEFF"
                                            FontFamily="Segoe UI"/>
@@ -198,7 +207,16 @@
                             </Style>
                         </Border.Style>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock Text="🇷🇺" FontSize="24" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                            <Border Width="36" Height="26" CornerRadius="4" Margin="0,0,10,0" VerticalAlignment="Center">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <GradientStop Color="#FF00CEC9" Offset="0"/>
+                                        <GradientStop Color="#FF6C5CE7" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <TextBlock Text="RU" FontSize="12" FontWeight="Bold" Foreground="White"
+                                           HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI"/>
+                            </Border>
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Text="Русский" FontSize="15" FontWeight="SemiBold" Foreground="#EEEEFF"
                                            FontFamily="Segoe UI"/>
@@ -231,7 +249,7 @@
                 </StackPanel>
 
                 <!-- Version -->
-                <TextBlock Text="v1.0.0" FontSize="11" Foreground="#40FFFFFF"
+                <TextBlock Text="v1.0.2" FontSize="11" Foreground="#40FFFFFF"
                            HorizontalAlignment="Center" Margin="0,20,0,0"
                            FontFamily="Segoe UI"/>
             </StackPanel>

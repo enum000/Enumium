@@ -97,6 +97,57 @@ namespace Enumium.Services
                     Description = "Gives more CPU time to foreground applications (games)",
                     Impact = "Medium", RegistryPath = @"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl",
                     RegistryValue = "Win32PrioritySeparation", EnabledData = 38, DisabledData = 2 },
+
+                // ── FPS Boost ──
+                new() { Id = "disable_transparency", Name = "Disable Transparency Effects", Category = "FPS Boost",
+                    Description = "Disables window transparency effects to reduce GPU compositor load",
+                    Impact = "Medium", RegistryPath = @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize",
+                    RegistryValue = "EnableTransparency", EnabledData = 0, DisabledData = 1 },
+
+                new() { Id = "disable_animations", Name = "Disable System Animations", Category = "FPS Boost",
+                    Description = "Turns off all Windows animations for snappier UI and freed GPU cycles",
+                    Impact = "High", RegistryPath = @"HKEY_CURRENT_USER\Control Panel\Desktop\WindowMetrics",
+                    RegistryValue = "MinAnimate", EnabledData = "0", DisabledData = "1" },
+
+                new() { Id = "gpu_priority", Name = "Maximize GPU Priority", Category = "FPS Boost",
+                    Description = "Sets GPU scheduling priority to maximum for better frame delivery",
+                    Impact = "High", RegistryPath = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games",
+                    RegistryValue = "GPU Priority", EnabledData = 8, DisabledData = 2 },
+
+                new() { Id = "sfio_priority", Name = "Set SFIO Priority to High", Category = "FPS Boost",
+                    Description = "Maximizes Scheduled File I/O priority for game assets loading",
+                    Impact = "Medium", RegistryPath = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games",
+                    RegistryValue = "SFIO Priority", EnabledData = "High", DisabledData = "Normal" },
+
+                new() { Id = "scheduling_category", Name = "Set High Scheduling Category", Category = "FPS Boost",
+                    Description = "Tells the scheduler to treat game processes as high-priority workloads",
+                    Impact = "Medium", RegistryPath = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games",
+                    RegistryValue = "Scheduling Category", EnabledData = "High", DisabledData = "Medium" },
+
+                new() { Id = "disable_mouse_accel", Name = "Disable Mouse Acceleration", Category = "FPS Boost",
+                    Description = "Enables raw mouse input for precise aiming in games",
+                    Impact = "High", RegistryPath = @"HKEY_CURRENT_USER\Control Panel\Mouse",
+                    RegistryValue = "MouseSpeed", EnabledData = "0", DisabledData = "1" },
+
+                new() { Id = "disable_search_indexer", Name = "Reduce Search Indexer Impact", Category = "FPS Boost",
+                    Description = "Prevents Windows Search from consuming disk I/O during gaming",
+                    Impact = "Medium", RegistryPath = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Search",
+                    RegistryValue = "PreventIndexingLowDiskSpaceMB", EnabledData = 999999, DisabledData = 0 },
+
+                new() { Id = "disable_power_throttle", Name = "Disable Power Throttling", Category = "FPS Boost",
+                    Description = "Prevents Windows from throttling CPU for power saving during games",
+                    Impact = "High", RegistryPath = @"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling",
+                    RegistryValue = "PowerThrottlingOff", EnabledData = 1, DisabledData = 0 },
+
+                new() { Id = "disable_cortana", Name = "Disable Cortana Background", Category = "FPS Boost",
+                    Description = "Prevents Cortana from using background CPU and RAM resources",
+                    Impact = "Low", RegistryPath = @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Search",
+                    RegistryValue = "AllowCortana", EnabledData = 0, DisabledData = 1 },
+
+                new() { Id = "high_perf_graphics", Name = "Force High Performance Graphics", Category = "FPS Boost",
+                    Description = "Sets Windows to always prefer high-performance GPU for all applications",
+                    Impact = "High", RegistryPath = @"HKEY_CURRENT_USER\Software\Microsoft\DirectX\UserGpuPreferences",
+                    RegistryValue = "DirectXUserGlobalSettings", EnabledData = "SwapEffectUpgradeEnable=1;", DisabledData = "" },
             };
         }
 

@@ -22,11 +22,11 @@
 
         <!-- Tool Tabs -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="28,16,28,0">
-            <RadioButton Style="{StaticResource TabButtonStyle}" Content="💻 System Info" IsChecked="True"
+            <RadioButton Style="{StaticResource TabButtonStyle}" Content="System Info" IsChecked="True"
                          GroupName="ToolTabs" Command="{Binding SelectToolCommand}" CommandParameter="0"/>
-            <RadioButton Style="{StaticResource TabButtonStyle}" Content="📋 Processes" Margin="4,0"
+            <RadioButton Style="{StaticResource TabButtonStyle}" Content="Processes" Margin="4,0"
                          GroupName="ToolTabs" Command="{Binding SelectToolCommand}" CommandParameter="1"/>
-            <RadioButton Style="{StaticResource TabButtonStyle}" Content="🏆 Benchmark" Margin="4,0"
+            <RadioButton Style="{StaticResource TabButtonStyle}" Content="Benchmark" Margin="4,0"
                          GroupName="ToolTabs" Command="{Binding SelectToolCommand}" CommandParameter="2"/>
         </StackPanel>
 
@@ -70,7 +70,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Button Content="🔄 Refresh" Style="{StaticResource SecondaryButtonStyle}"
+                <Button Content="Refresh" Style="{StaticResource SecondaryButtonStyle}"
                         HorizontalAlignment="Right" Margin="0,0,0,8"
                         Command="{Binding RefreshProcessesCommand}"/>
 
@@ -146,7 +146,7 @@
                     </Style>
                 </StackPanel.Style>
 
-                <Button Content="🚀 Run Benchmark" Style="{StaticResource PrimaryButtonStyle}"
+                <Button Content="Run Benchmark" Style="{StaticResource PrimaryButtonStyle}"
                         HorizontalAlignment="Left" Margin="0,0,0,16" MinWidth="160"
                         Command="{Binding RunBenchmarkCommand}"/>
 

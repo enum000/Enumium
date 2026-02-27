@@ -42,22 +42,35 @@
             <views:AboutView/>
         </DataTemplate>
 
-        <!-- Nav Item Style with Emoji Icons -->
+        <!-- Nav Item Style with MDL2 Icons -->
         <Style x:Key="NavItemStyle" TargetType="RadioButton">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
                         <Border x:Name="NavBorder" Background="Transparent" Padding="14,10"
-                                Cursor="Hand" CornerRadius="6" Margin="8,2">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock x:Name="NavIcon" Text="{TemplateBinding Tag}"
-                                           FontSize="16" VerticalAlignment="Center"
-                                           Margin="0,0,12,0" Width="24" TextAlignment="Center"/>
-                                <TextBlock x:Name="NavText" Text="{TemplateBinding Content}"
-                                           FontSize="13" VerticalAlignment="Center"
-                                           Foreground="{StaticResource TextSecondaryBrush}"
-                                           FontFamily="{StaticResource PrimaryFont}"/>
-                            </StackPanel>
+                                Cursor="Hand" CornerRadius="8" Margin="6,2">
+                            <Grid>
+                                <!-- Active indicator bar -->
+                                <Border x:Name="ActiveIndicator" Width="3" Height="20" HorizontalAlignment="Left"
+                                        Margin="-14,0,0,0" CornerRadius="0,2,2,0" Opacity="0">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                            <GradientStop Color="#FF6C5CE7" Offset="0"/>
+                                            <GradientStop Color="#FF00CEC9" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="NavIcon" Text="{TemplateBinding Tag}"
+                                               FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
+                                               FontSize="16" VerticalAlignment="Center"
+                                               Margin="0,0,12,0" Width="24" TextAlignment="Center"/>
+                                    <TextBlock x:Name="NavText" Text="{TemplateBinding Content}"
+                                               FontSize="13" VerticalAlignment="Center"
+                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                               FontFamily="{StaticResource PrimaryFont}"/>
+                                </StackPanel>
+                            </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -75,8 +88,7 @@
                                 </Setter>
                                 <Setter TargetName="NavText" Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
                                 <Setter TargetName="NavText" Property="FontWeight" Value="SemiBold"/>
-                                <Setter TargetName="NavBorder" Property="BorderBrush" Value="#406C5CE7"/>
-                                <Setter TargetName="NavBorder" Property="BorderThickness" Value="0,0,0,0"/>
+                                <Setter TargetName="ActiveIndicator" Property="Opacity" Value="1"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -189,11 +201,11 @@
 
                     <!-- Window Controls: use text that's universally available -->
                     <StackPanel Grid.Column="2" Orientation="Horizontal">
-                        <Button Style="{StaticResource WinBtn}" Content="—"
+                        <Button Style="{StaticResource WinBtn}" Content="&#xE921;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="10"
                                 Command="{Binding MinimizeCommand}"/>
-                        <Button Style="{StaticResource WinBtn}" Content="☐"
+                        <Button Style="{StaticResource WinBtn}" Content="&#xE922;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="10"
                                 Command="{Binding MaximizeCommand}"/>
-                        <Button Style="{StaticResource CloseBtn}" Content="✕"
+                        <Button Style="{StaticResource CloseBtn}" Content="&#xE8BB;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="10"
                                 Command="{Binding CloseCommand}"/>
                     </StackPanel>
                 </Grid>
@@ -216,35 +228,35 @@
                         </Grid.RowDefinitions>
 
                         <StackPanel Grid.Row="0" Margin="0,12,0,0">
-                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="📊" Content="{Binding NavDashboard}"
+                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="&#xE80F;" Content="{Binding NavDashboard}"
                                          GroupName="Nav" IsChecked="True"
                                          Command="{Binding NavigateCommand}" CommandParameter="Dashboard"/>
-                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="⚡" Content="{Binding NavPerformance}"
+                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="&#xE945;" Content="{Binding NavPerformance}"
                                          GroupName="Nav"
                                          Command="{Binding NavigateCommand}" CommandParameter="Performance"/>
-                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="🧹" Content="{Binding NavCleaner}"
+                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="&#xE9F3;" Content="{Binding NavCleaner}"
                                          GroupName="Nav"
                                          Command="{Binding NavigateCommand}" CommandParameter="Cleaner"/>
-                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="🚀" Content="{Binding NavStartup}"
+                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="&#xE7B5;" Content="{Binding NavStartup}"
                                          GroupName="Nav"
                                          Command="{Binding NavigateCommand}" CommandParameter="Startup"/>
-                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="🌐" Content="{Binding NavNetwork}"
+                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="&#xE774;" Content="{Binding NavNetwork}"
                                          GroupName="Nav"
                                          Command="{Binding NavigateCommand}" CommandParameter="Network"/>
-                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="🛡️" Content="{Binding NavPrivacy}"
+                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="&#xE72E;" Content="{Binding NavPrivacy}"
                                          GroupName="Nav"
                                          Command="{Binding NavigateCommand}" CommandParameter="Privacy"/>
-                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="🔧" Content="{Binding NavTools}"
+                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="&#xE90F;" Content="{Binding NavTools}"
                                          GroupName="Nav"
                                          Command="{Binding NavigateCommand}" CommandParameter="Tools"/>
-                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="📋" Content="{Binding NavReports}"
+                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="&#xE9D5;" Content="{Binding NavReports}"
                                          GroupName="Nav"
                                          Command="{Binding NavigateCommand}" CommandParameter="Reports"/>
 
                             <!-- Separator -->
                             <Border Height="1" Background="{StaticResource BorderBrush}" Margin="16,8"/>
 
-                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="ℹ️" Content="{Binding NavAbout}"
+                            <RadioButton Style="{StaticResource NavItemStyle}" Tag="&#xE946;" Content="{Binding NavAbout}"
                                          GroupName="Nav"
                                          Command="{Binding NavigateCommand}" CommandParameter="About"/>
                         </StackPanel>
@@ -252,7 +264,7 @@
                         <!-- Version info at bottom -->
                         <StackPanel Grid.Row="1" Margin="14,0,14,14">
                             <Border Height="1" Background="{StaticResource BorderBrush}" Margin="0,0,0,10"/>
-                            <TextBlock Text="Enumium v1.0.0  ◆  enum000" FontSize="10"
+                            <TextBlock Text="Enumium v1.0.2  ◆  enum000" FontSize="10"
                                        Foreground="{StaticResource TextSecondaryBrush}"
                                        FontFamily="{StaticResource PrimaryFont}"
                                        HorizontalAlignment="Center" Opacity="0.5"/>

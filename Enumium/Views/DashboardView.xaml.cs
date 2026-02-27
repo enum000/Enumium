@@ -28,5 +28,11 @@ namespace Enumium.Views
             if (DataContext is DashboardViewModel vm)
                 vm.NetworkResetCommand.Execute(null);
         }
+
+        private void FpsBoost_Click(object sender, MouseButtonEventArgs e)
+        {
+            if (DataContext is DashboardViewModel vm)
+                vm.FpsBoostCommand.Execute(null);
+        }
     }
 }

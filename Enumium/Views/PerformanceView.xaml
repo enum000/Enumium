@@ -23,18 +23,21 @@
 
         <!-- Category Tabs -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="28,16,28,0">
-            <RadioButton Style="{StaticResource TabButtonStyle}" Content="⚙️ System" IsChecked="True"
+            <RadioButton Style="{StaticResource TabButtonStyle}" Content="System" IsChecked="True"
                          GroupName="PerfTabs"
                          Command="{Binding SelectCategoryCommand}" CommandParameter="System"/>
-            <RadioButton Style="{StaticResource TabButtonStyle}" Content="🧠 Memory" Margin="4,0"
+            <RadioButton Style="{StaticResource TabButtonStyle}" Content="Memory" Margin="4,0"
                          GroupName="PerfTabs"
                          Command="{Binding SelectCategoryCommand}" CommandParameter="Memory"/>
-            <RadioButton Style="{StaticResource TabButtonStyle}" Content="💾 Disk" Margin="4,0"
+            <RadioButton Style="{StaticResource TabButtonStyle}" Content="Disk" Margin="4,0"
                          GroupName="PerfTabs"
                          Command="{Binding SelectCategoryCommand}" CommandParameter="Disk"/>
-            <RadioButton Style="{StaticResource TabButtonStyle}" Content="🎮 Gaming" Margin="4,0"
+            <RadioButton Style="{StaticResource TabButtonStyle}" Content="Gaming" Margin="4,0"
                          GroupName="PerfTabs"
                          Command="{Binding SelectCategoryCommand}" CommandParameter="Gaming"/>
+            <RadioButton Style="{StaticResource TabButtonStyle}" Content="FPS Boost" Margin="4,0"
+                         GroupName="PerfTabs"
+                         Command="{Binding SelectCategoryCommand}" CommandParameter="FPS Boost"/>
         </StackPanel>
 
         <!-- Tweaks List -->

@@ -22,7 +22,7 @@
                 <TextBlock Text="{Binding StatusText}" Style="{StaticResource BodyTextStyle}" Margin="0,4,0,0"/>
             </StackPanel>
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button Content="🔍 Scan Now" Style="{StaticResource PrimaryButtonStyle}"
+                <Button Content="Scan Now" Style="{StaticResource PrimaryButtonStyle}"
                         Command="{Binding ScanCommand}" MinWidth="120"/>
             </StackPanel>
         </Grid>
@@ -39,7 +39,7 @@
                 <Border Style="{StaticResource CardStyle}" Margin="0,0,0,12"
                         Visibility="{Binding IsScanning, Converter={StaticResource BoolVis}}">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="🔍" FontSize="40" HorizontalAlignment="Center" Margin="0,0,0,8"/>
+                        <TextBlock Text="&#xE721;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="28" HorizontalAlignment="Center" Margin="0,0,0,8" Foreground="{StaticResource SecondaryAccentBrush}"/>
                         <TextBlock Text="Scanning your system..." FontSize="16" FontWeight="SemiBold"
                                    Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center"/>
                         <TextBlock Text="{Binding ScanProgress}" Style="{StaticResource BodyTextStyle}"
@@ -68,7 +68,9 @@
                                               VerticalAlignment="Center"/>
 
                                     <!-- Icon -->
-                                    <TextBlock Grid.Column="1" Text="{Binding Icon}" FontSize="20"
+                                    <TextBlock Grid.Column="1" Text="{Binding Icon}" FontSize="18"
+                                               FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
+                                               Foreground="{StaticResource PrimaryAccentBrush}"
                                                VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
                                     <!-- Info -->
@@ -113,7 +115,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Content="Select All" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,8,0"
                             Command="{Binding SelectAllCommand}"/>
-                    <Button Content="🗑️ Clean Selected" Style="{StaticResource PrimaryButtonStyle}"
+                    <Button Content="Clean Selected" Style="{StaticResource PrimaryButtonStyle}"
                             Command="{Binding CleanCommand}" MinWidth="140"/>
                 </StackPanel>
             </Grid>

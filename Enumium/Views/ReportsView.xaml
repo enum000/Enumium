@@ -16,11 +16,11 @@
                 <TextBlock Text="{Binding StatusText}" Style="{StaticResource BodyTextStyle}" Margin="0,4,0,0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="🔄 Refresh" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,8,0"
+                <Button Content="Refresh" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,8,0"
                         Command="{Binding RefreshCommand}"/>
-                <Button Content="📊 Export CSV" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,8,0"
+                <Button Content="Export CSV" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,8,0"
                         Command="{Binding ExportCsvCommand}"/>
-                <Button Content="🗑️ Clear" Style="{StaticResource DangerButtonStyle}"
+                <Button Content="Clear" Style="{StaticResource DangerButtonStyle}"
                         Command="{Binding ClearHistoryCommand}"/>
             </StackPanel>
         </Grid>
@@ -68,10 +68,10 @@
                                 <TextBlock Grid.Column="3" FontSize="16" VerticalAlignment="Center">
                                     <TextBlock.Style>
                                         <Style TargetType="TextBlock">
-                                            <Setter Property="Text" Value="✅"/>
+                                            <Setter Property="Text" Value="OK"/>
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Success}" Value="False">
-                                                    <Setter Property="Text" Value="❌"/>
+                                                    <Setter Property="Text" Value="Fail"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>

@@ -56,7 +56,7 @@
                         </TextBlock>
                     </StackPanel>
 
-                    <Button Grid.Column="1" Content="⭐ GitHub" Style="{StaticResource PrimaryButtonStyle}"
+                    <Button Grid.Column="1" Content="GitHub" Style="{StaticResource PrimaryButtonStyle}"
                             Command="{Binding OpenGitHubCommand}" VerticalAlignment="Center"/>
                 </Grid>
             </Border>
@@ -65,7 +65,7 @@
             <Border Style="{StaticResource CardStyle}" Margin="0,0,0,16" Cursor="Hand"
                     MouseLeftButtonDown="GitHub_Click">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="🔗" FontSize="18" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                    <TextBlock Text="&#xE71B;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="16" VerticalAlignment="Center" Margin="0,0,12,0" Foreground="{StaticResource SecondaryAccentBrush}"/>
                     <StackPanel>
                         <TextBlock Text="{Binding GitHubLabel}" FontSize="12"
                                    Foreground="{StaticResource TextSecondaryBrush}"/>
@@ -89,7 +89,7 @@
             <!-- Built With -->
             <Border Style="{StaticResource CardStyle}" Margin="0,0,0,16">
                 <StackPanel HorizontalAlignment="Center">
-                    <TextBlock Text="🛠️" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,8"/>
+                    <TextBlock Text="&#xE90F;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,8" Foreground="{StaticResource PrimaryAccentBrush}"/>
                     <TextBlock Text="{Binding BuiltWith}" FontSize="13" FontWeight="SemiBold"
                                Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center"/>
                 </StackPanel>

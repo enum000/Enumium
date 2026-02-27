@@ -88,6 +88,7 @@ namespace Enumium.ViewModels
         public RelayCommand GameModeCommand { get; }
         public RelayCommand NetworkResetCommand { get; }
         public RelayCommand ApplyRecommendationCommand { get; }
+        public RelayCommand FpsBoostCommand { get; }
 
         private bool _isBoostingRam;
         public bool IsBoostingRam { get => _isBoostingRam; set => SetProperty(ref _isBoostingRam, value); }
@@ -102,6 +103,7 @@ namespace Enumium.ViewModels
             KillProcessCommand = new RelayCommand(p => { if (p is int pid) SystemMonitorService.KillProcess(pid); RefreshProcesses(); });
             GameModeCommand = new RelayCommand(_ => ToggleGameMode());
             NetworkResetCommand = new RelayCommand(async _ => await ResetNetwork());
+            FpsBoostCommand = new RelayCommand(_ => ApplyFpsBoost());
             ApplyRecommendationCommand = new RelayCommand(p =>
             {
                 if (p is RecommendedAction rec && !rec.IsFixed)
@@ -170,7 +172,7 @@ namespace Enumium.ViewModels
             {
                 RecommendedActions.Add(new RecommendedAction
                 {
-                    Icon = "🧠",
+                    Icon = "\uE7F4",
                     Title = LocalizationService.CurrentLanguage == "ru" ? "Освободить оперативную память" : "Free Up RAM",
                     Description = LocalizationService.CurrentLanguage == "ru"
                         ? "Очистить рабочие наборы всех процессов для освобождения памяти"
@@ -184,7 +186,7 @@ namespace Enumium.ViewModels
             // DNS flush recommendation
             RecommendedActions.Add(new RecommendedAction
             {
-                Icon = "🌐",
+                Icon = "\uE774",
                 Title = LocalizationService.CurrentLanguage == "ru" ? "Очистить DNS кэш" : "Flush DNS Cache",
                 Description = LocalizationService.CurrentLanguage == "ru"
                     ? "Удалить устаревшие записи DNS для улучшения сетевого соединения"
@@ -197,7 +199,7 @@ namespace Enumium.ViewModels
             // Startup optimization
             RecommendedActions.Add(new RecommendedAction
             {
-                Icon = "🚀",
+                Icon = "\uE7B5",
                 Title = LocalizationService.CurrentLanguage == "ru" ? "Оптимизировать автозагрузку" : "Optimize Startup Programs",
                 Description = LocalizationService.CurrentLanguage == "ru"
                     ? "Проверьте программы автозагрузки и отключите ненужные"
@@ -209,7 +211,7 @@ namespace Enumium.ViewModels
             // Privacy recommendation
             RecommendedActions.Add(new RecommendedAction
             {
-                Icon = "🛡️",
+                Icon = "\uE72E",
                 Title = LocalizationService.CurrentLanguage == "ru" ? "Усилить защиту приватности" : "Enhance Privacy Protection",
                 Description = LocalizationService.CurrentLanguage == "ru"
                     ? "Отключить телеметрию Windows и рекламный идентификатор"
@@ -227,7 +229,7 @@ namespace Enumium.ViewModels
             // Temp files
             RecommendedActions.Add(new RecommendedAction
             {
-                Icon = "🗑️",
+                Icon = "\uE74D",
                 Title = LocalizationService.CurrentLanguage == "ru" ? "Очистить временные файлы" : "Clean Temporary Files",
                 Description = LocalizationService.CurrentLanguage == "ru"
                     ? "Удалите накопленные временные файлы для освобождения места на диске"
@@ -239,7 +241,7 @@ namespace Enumium.ViewModels
             // TCP Optimization
             RecommendedActions.Add(new RecommendedAction
             {
-                Icon = "⚡",
+                Icon = "\uE945",
                 Title = LocalizationService.CurrentLanguage == "ru" ? "Оптимизировать TCP/IP" : "Optimize TCP/IP Stack",
                 Description = LocalizationService.CurrentLanguage == "ru"
                     ? "Применить сетевые оптимизации для уменьшения задержки"
@@ -247,6 +249,19 @@ namespace Enumium.ViewModels
                 Severity = "Info",
                 ActionLabel = LocalizationService.CurrentLanguage == "ru" ? "Оптимизировать" : "Optimize",
                 OnApply = () => { NetworkService.ApplyTcpOptimizations(); }
+            });
+
+            // FPS Boost
+            RecommendedActions.Add(new RecommendedAction
+            {
+                Icon = "\uE7FC",
+                Title = LocalizationService.CurrentLanguage == "ru" ? "Максимальный FPS (один клик)" : "Maximum FPS Boost (One-Click)",
+                Description = LocalizationService.CurrentLanguage == "ru"
+                    ? "Применить все оптимизации для максимальной производительности в играх"
+                    : "Apply all gaming optimizations for maximum frame rate performance",
+                Severity = "Critical",
+                ActionLabel = LocalizationService.CurrentLanguage == "ru" ? "Буст" : "Boost",
+                OnApply = () => { ApplyFpsBoost(); }
             });
         }
 
@@ -301,6 +316,26 @@ namespace Enumium.ViewModels
         {
             await NetworkService.FlushDnsAsync();
             ReportService.LogOptimization("Network Reset", "Network", "Flushed DNS cache", true);
+        }
+
+        private void ApplyFpsBoost()
+        {
+            var tweaks = TweakService.GetSystemTweaks()
+                .Where(t => t.Category == "FPS Boost" || t.Category == "Gaming")
+                .ToList();
+
+            int applied = 0;
+            foreach (var tweak in tweaks)
+            {
+                if (TweakService.ApplyTweak(tweak, true))
+                {
+                    applied++;
+                    ReportService.LogOptimization("FPS Boost", "Gaming", tweak.Name, true);
+                }
+            }
+
+            // Also boost RAM
+            Task.Run(() => SystemMonitorService.BoostRam());
         }
 
         public void Dispose()

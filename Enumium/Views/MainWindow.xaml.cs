@@ -12,11 +12,27 @@ namespace Enumium.Views
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
+            StateChanged += MainWindow_StateChanged;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             EnableAcrylicEffect();
+        }
+
+        private void MainWindow_StateChanged(object? sender, EventArgs e)
+        {
+            // When maximized, add padding so content doesn't extend behind taskbar/edges
+            if (WindowState == WindowState.Maximized)
+            {
+                RootBorder.Margin = new Thickness(7);
+                RootBorder.CornerRadius = new CornerRadius(0);
+            }
+            else
+            {
+                RootBorder.Margin = new Thickness(0);
+                RootBorder.CornerRadius = new CornerRadius(10);
+            }
         }
 
         private void EnableAcrylicEffect()

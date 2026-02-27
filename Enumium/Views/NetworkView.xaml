@@ -37,7 +37,7 @@
                                    FontFamily="{StaticResource MonoFont}"/>
                     </StackPanel>
 
-                    <Button Grid.Column="2" Content="🏓 Ping Test" Style="{StaticResource PrimaryButtonStyle}"
+                    <Button Grid.Column="2" Content="Ping Test" Style="{StaticResource PrimaryButtonStyle}"
                             Command="{Binding PingTestCommand}" VerticalAlignment="Center"/>
                 </Grid>
             </Border>
@@ -48,7 +48,7 @@
                 <Border Style="{StaticResource CardStyle}" Margin="0,0,8,0" Cursor="Hand"
                         MouseLeftButtonDown="FlushDns_Click">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="🔄" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,6"/>
+                        <TextBlock Text="&#xE72C;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,6" Foreground="{StaticResource SecondaryAccentBrush}"/>
                         <TextBlock Text="Flush DNS" FontSize="12" FontWeight="SemiBold"
                                    Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center"/>
                     </StackPanel>
@@ -56,7 +56,7 @@
                 <Border Style="{StaticResource CardStyle}" Margin="4,0,4,0" Cursor="Hand"
                         MouseLeftButtonDown="ResetWinsock_Click">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="🔧" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,6"/>
+                        <TextBlock Text="&#xE90F;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,6" Foreground="{StaticResource PrimaryAccentBrush}"/>
                         <TextBlock Text="Reset Winsock" FontSize="12" FontWeight="SemiBold"
                                    Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center"/>
                     </StackPanel>
@@ -64,7 +64,7 @@
                 <Border Style="{StaticResource CardStyle}" Margin="4,0,4,0" Cursor="Hand"
                         MouseLeftButtonDown="RenewIp_Click">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="🌐" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,6"/>
+                        <TextBlock Text="&#xE774;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,6" Foreground="{StaticResource SecondaryAccentBrush}"/>
                         <TextBlock Text="Renew IP" FontSize="12" FontWeight="SemiBold"
                                    Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center"/>
                     </StackPanel>
@@ -72,7 +72,7 @@
                 <Border Style="{StaticResource CardStyle}" Margin="8,0,0,0" Cursor="Hand"
                         MouseLeftButtonDown="ResetStack_Click">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="⚡" FontSize="24" HorizontalAlignment="Center" Margin="0,0,0,6"/>
+                        <TextBlock Text="&#xE945;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,6" Foreground="{StaticResource WarningBrush}"/>
                         <TextBlock Text="Full Reset" FontSize="12" FontWeight="SemiBold"
                                    Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center"/>
                     </StackPanel>
@@ -107,7 +107,7 @@
             <!-- TCP Optimization -->
             <Grid Margin="0,12,0,20">
                 <TextBlock Text="TCP/IP Optimization" Style="{StaticResource SectionTitleStyle}" VerticalAlignment="Center"/>
-                <Button Content="⚡ Apply TCP Optimizations" Style="{StaticResource PrimaryButtonStyle}"
+                <Button Content="Apply TCP Optimizations" Style="{StaticResource PrimaryButtonStyle}"
                         HorizontalAlignment="Right" Command="{Binding ApplyTcpOptCommand}"/>
             </Grid>
 

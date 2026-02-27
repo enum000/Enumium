@@ -35,9 +35,9 @@
                     </TextBlock>
                 </StackPanel>
 
-                <Button Content="🛡️ Max Privacy" Style="{StaticResource PrimaryButtonStyle}"
+                <Button Content="Max Privacy" Style="{StaticResource PrimaryButtonStyle}"
                         Command="{Binding MaxPrivacyCommand}" Margin="0,0,8,0"/>
-                <Button Content="↩️ Restore Defaults" Style="{StaticResource SecondaryButtonStyle}"
+                <Button Content="Restore Defaults" Style="{StaticResource SecondaryButtonStyle}"
                         Command="{Binding RestoreDefaultsCommand}"/>
             </StackPanel>
         </Grid>

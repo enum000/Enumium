@@ -22,10 +22,10 @@
                     <TextBlock Text="{Binding StatusText}" Style="{StaticResource BodyTextStyle}" Margin="0,4,0,0"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <TextBlock Text="⚙️ " FontSize="12" VerticalAlignment="Center"/>
+                    <TextBlock Text="&#xE912;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="12" VerticalAlignment="Center" Foreground="{StaticResource SecondaryAccentBrush}" Margin="0,0,6,0"/>
                     <TextBlock Text="{Binding ProcessCount}" Foreground="{StaticResource TextPrimaryBrush}"
                                FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,16,0"/>
-                    <TextBlock Text="⏱️ " FontSize="12" VerticalAlignment="Center"/>
+                    <TextBlock Text="&#xE916;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="12" VerticalAlignment="Center" Foreground="{StaticResource SecondaryAccentBrush}" Margin="0,0,6,0"/>
                     <TextBlock Text="{Binding Uptime}" Foreground="{StaticResource TextPrimaryBrush}"
                                FontWeight="SemiBold" FontFamily="{StaticResource MonoFont}" VerticalAlignment="Center"/>
                 </StackPanel>
@@ -34,7 +34,7 @@
             <!-- HEALTH SCORE + SYSTEM METRICS ROW -->
             <Grid Margin="0,0,0,20">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="Auto" MinWidth="180" MaxWidth="220"/>
                     <ColumnDefinition Width="16"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -144,7 +144,9 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!-- Icon -->
-                                <TextBlock Grid.Column="0" Text="{Binding Icon}" FontSize="20"
+                                <TextBlock Grid.Column="0" Text="{Binding Icon}" FontSize="18"
+                                           FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
+                                           Foreground="{StaticResource PrimaryAccentBrush}"
                                            VerticalAlignment="Center"/>
 
                                 <!-- Info -->
@@ -198,7 +200,7 @@
                                         <Style TargetType="Button" BasedOn="{StaticResource PrimaryButtonStyle}">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding IsFixed}" Value="True">
-                                                    <Setter Property="Content" Value="✅"/>
+                                                    <Setter Property="Content" Value="Done"/>
                                                     <Setter Property="IsEnabled" Value="False"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
@@ -213,44 +215,88 @@
 
             <!-- QUICK ACTIONS ROW -->
             <TextBlock Text="{Binding QuickActionsText}" Style="{StaticResource SectionTitleStyle}" Margin="0,0,0,12"/>
-            <UniformGrid Columns="4" Margin="0,0,0,20">
-                <Border Style="{StaticResource CardStyle}" Margin="0,0,8,0" Cursor="Hand"
+            <UniformGrid Columns="5" Margin="0,0,0,20">
+                <Border Style="{StaticResource CardStyle}" Margin="0,0,6,0" Cursor="Hand"
                         MouseLeftButtonDown="BoostRam_Click">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="🚀" FontSize="28" HorizontalAlignment="Center" Margin="0,0,0,8"/>
-                        <TextBlock Text="{Binding BoostRamText}" FontSize="13" FontWeight="SemiBold"
-                                   Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center"/>
-                        <TextBlock Text="{Binding BoostRamDesc}" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}"
-                                   HorizontalAlignment="Center"/>
+                        <Border Width="48" Height="48" CornerRadius="24" Margin="0,0,0,8" HorizontalAlignment="Center">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#306C5CE7" Offset="0"/>
+                                    <GradientStop Color="#3000CEC9" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <TextBlock Text="&#xE946;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource SecondaryAccentBrush}"/>
+                        </Border>
+                        <TextBlock Text="{Binding BoostRamText}" FontSize="12" FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding BoostRamDesc}" FontSize="10" Foreground="{StaticResource TextSecondaryBrush}"
+                                   HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap"/>
                     </StackPanel>
                 </Border>
-                <Border Style="{StaticResource CardStyle}" Margin="4,0,4,0" Cursor="Hand"
+                <Border Style="{StaticResource CardStyle}" Margin="3,0,3,0" Cursor="Hand"
                         MouseLeftButtonDown="GameMode_Click">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="🎮" FontSize="28" HorizontalAlignment="Center" Margin="0,0,0,8"/>
-                        <TextBlock Text="{Binding GameModeText}" FontSize="13" FontWeight="SemiBold"
-                                   Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center"/>
-                        <TextBlock Text="{Binding GameModeDesc}" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}"
-                                   HorizontalAlignment="Center"/>
+                        <Border Width="48" Height="48" CornerRadius="24" Margin="0,0,0,8" HorizontalAlignment="Center">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#30FDCB6E" Offset="0"/>
+                                    <GradientStop Color="#30FF7675" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <TextBlock Text="&#xE7FC;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource YellowBrush}"/>
+                        </Border>
+                        <TextBlock Text="{Binding GameModeText}" FontSize="12" FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding GameModeDesc}" FontSize="10" Foreground="{StaticResource TextSecondaryBrush}"
+                                   HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap"/>
                     </StackPanel>
                 </Border>
-                <Border Style="{StaticResource CardStyle}" Margin="4,0,4,0" Cursor="Hand"
+                <Border Style="{StaticResource CardStyle}" Margin="3,0,3,0" Cursor="Hand"
                         MouseLeftButtonDown="NetworkReset_Click">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="🌐" FontSize="28" HorizontalAlignment="Center" Margin="0,0,0,8"/>
-                        <TextBlock Text="{Binding NetworkResetText}" FontSize="13" FontWeight="SemiBold"
-                                   Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center"/>
-                        <TextBlock Text="{Binding NetworkResetDesc}" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}"
-                                   HorizontalAlignment="Center"/>
+                        <Border Width="48" Height="48" CornerRadius="24" Margin="0,0,0,8" HorizontalAlignment="Center">
+                            <Border.Background>
+                                <SolidColorBrush Color="#3000CEC9"/>
+                            </Border.Background>
+                            <TextBlock Text="&#xE774;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource SecondaryAccentBrush}"/>
+                        </Border>
+                        <TextBlock Text="{Binding NetworkResetText}" FontSize="12" FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding NetworkResetDesc}" FontSize="10" Foreground="{StaticResource TextSecondaryBrush}"
+                                   HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap"/>
                     </StackPanel>
                 </Border>
-                <Border Style="{StaticResource CardStyle}" Margin="8,0,0,0">
+                <Border Style="{StaticResource CardStyle}" Margin="3,0,3,0" Cursor="Hand"
+                        MouseLeftButtonDown="FpsBoost_Click">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="💻" FontSize="28" HorizontalAlignment="Center" Margin="0,0,0,8"/>
-                        <TextBlock Text="GPU" FontSize="13" FontWeight="SemiBold"
-                                   Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center"/>
+                        <Border Width="48" Height="48" CornerRadius="24" Margin="0,0,0,8" HorizontalAlignment="Center">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#30FF7675" Offset="0"/>
+                                    <GradientStop Color="#306C5CE7" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <TextBlock Text="&#xE945;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource WarningBrush}"/>
+                        </Border>
+                        <TextBlock Text="FPS Boost" FontSize="12" FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center" TextAlignment="Center"/>
+                        <TextBlock Text="Max frames" FontSize="10" Foreground="{StaticResource TextSecondaryBrush}"
+                                   HorizontalAlignment="Center" TextAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource CardStyle}" Margin="6,0,0,0">
+                    <StackPanel HorizontalAlignment="Center">
+                        <Border Width="48" Height="48" CornerRadius="24" Margin="0,0,0,8" HorizontalAlignment="Center">
+                            <Border.Background>
+                                <SolidColorBrush Color="#3000B894"/>
+                            </Border.Background>
+                            <TextBlock Text="&#xE7F4;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource SuccessBrush}"/>
+                        </Border>
+                        <TextBlock Text="GPU" FontSize="12" FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Center" TextAlignment="Center"/>
                         <TextBlock Text="{Binding GpuName}" FontSize="10" Foreground="{StaticResource TextSecondaryBrush}"
-                                   HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" MaxWidth="140"/>
+                                   HorizontalAlignment="Center" TextTrimming="CharacterEllipsis" MaxWidth="120" TextAlignment="Center"/>
                     </StackPanel>
                 </Border>
             </UniformGrid>
@@ -299,7 +345,7 @@
                                     </TextBlock>
                                     <TextBlock Grid.Column="3" Text="{Binding Status}" FontSize="12"
                                                Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center"/>
-                                    <Button Grid.Column="4" Content="❌" Style="{StaticResource DangerButtonStyle}"
+                                    <Button Grid.Column="4" Content="End" Style="{StaticResource DangerButtonStyle}"
                                             Height="26" MinWidth="50" FontSize="11"
                                             Command="{Binding DataContext.KillProcessCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                             CommandParameter="{Binding Pid}"/>

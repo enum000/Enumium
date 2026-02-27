@@ -122,7 +122,7 @@ namespace Enumium.Services
 
                 // About
                 ["about_title"] = "About Enumium",
-                ["about_version"] = "Version 1.0.0",
+                ["about_version"] = "Version 1.0.2",
                 ["about_desc"] = "Professional Windows System Optimization Software",
                 ["about_developer"] = "Developer",
                 ["about_github"] = "GitHub",
@@ -265,7 +265,7 @@ namespace Enumium.Services
 
                 // About
                 ["about_title"] = "О программе Enumium",
-                ["about_version"] = "Версия 1.0.0",
+                ["about_version"] = "Версия 1.0.2",
                 ["about_desc"] = "Профессиональное ПО для оптимизации Windows",
                 ["about_developer"] = "Разработчик",
                 ["about_github"] = "GitHub",
